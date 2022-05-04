@@ -1,30 +1,37 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <main class="app">
+    <div class="app__container">
+      <div class="buttons text-neutral-200">
+        <element-button>Заказать в Москву</element-button>
+        <element-button>Заказать в Санкт-Петербург</element-button>
+      </div>
+    </div>
+  </main>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script setup lang="ts">
+import '@/assets/style/tailwind.css';
+import ElementButton from '@/components/UI/ElementButton/index.vue';
+</script>
+
+<style lang="postcss">
+html {
+  scroll-behavior: smooth;
 }
 
-#nav {
-  padding: 30px;
+body {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  line-height: 24px;
+  font-size: 16px;
+  font-weight: 400;
+  direction: ltr;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.app__container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 </style>
