@@ -33,9 +33,9 @@ const state = (): FormState => ({
     }
   ],
   fields: {
-    name: 'as',
-    phone: '+7 (123) 412-34-12',
-    email: '2@a',
+    name: '',
+    phone: '+7',
+    email: '',
     city_id: 1
   },
   serverResponse: '',
