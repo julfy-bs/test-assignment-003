@@ -6,7 +6,7 @@
           <element-button
             :is-blue="true"
             city="moscow"
-            :button-event="switchModal"
+            @click="switchModal('form', 1)"
           >
             Заказать в Москву
           </element-button>
@@ -15,7 +15,7 @@
           <element-button
             :is-green="true"
             city="peter"
-            :button-event="switchModal"
+            @click="switchModal('form', 2)"
           >
             Заказать в Санкт-Петербург
           </element-button>
@@ -151,9 +151,6 @@ body {
 
 
 @media (min-width: 768px) {
-
-
-
   .app__container {
     padding: 20px 40px;
   }

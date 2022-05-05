@@ -12,7 +12,9 @@ export interface FormState {
   cities: City[];
   fields: FormFields;
   serverResponse: string;
-  errors: string[]
+  errors: string[];
+  isEmailValid: boolean;
+  isPhoneValid: boolean;
 }
 
 const state = (): FormState => ({
@@ -33,28 +35,38 @@ const state = (): FormState => ({
   fields: {
     name: 'as',
     phone: '+7 (123) 412-34-12',
-    email: '2@a.com',
+    email: '2@a',
     city_id: 1
   },
   serverResponse: '',
-  errors: []
+  errors: [],
+  isEmailValid: false,
+  isPhoneValid: false
 })
 
 const mutations = {
   CHANGE_ONE_FIELD<Key extends keyof FormFields,
     Value extends FormFields[Key]>(state: FormState, payload: FormPayload<Key, Value>): void {
     state.fields[payload.key] = payload.value
-    console.log(payload, state.fields)
   },
   CHANGE_ALL_FIELDS(state: FormState, payload: FormFields): void {
     state.fields = payload
   },
-  THROW_ERROR(state: FormState, payload: string): void {
+  GET_SERVER_RESPONSE(state: FormState, payload: string): void {
     state.serverResponse = payload
   },
   ADD_ERROR(state: FormState, payload: string): void {
-    state.errors.push(payload)
-  }
+    state.errors.splice(0, 1, payload)
+  },
+  CLEAR_ERROR(state: FormState): void {
+    state.errors.splice(0, state.errors.length)
+  },
+  CHANGE_EMAIL_VALIDATION(state: FormState, payload: boolean): void {
+    state.isEmailValid = payload
+  },
+  CHANGE_PHONE_VALIDATION(state: FormState, payload: boolean): void {
+    state.isPhoneValid = payload
+  },
 }
 
 const actions = {
@@ -65,19 +77,27 @@ const actions = {
         .then((resolve) => {
           if (resolve) {
             const payload = JSON.parse(resolve.config.data.trim())
-            commit('THROW_ERROR', payload)
+            commit('GET_SERVER_RESPONSE', payload)
+            const emptyFields: FormFields = {
+              name: '',
+              phone: '',
+              email: '',
+              city_id: 0
+            }
+            commit('CHANGE_ALL_FIELDS', emptyFields)
+            commit('CLEAR_ERROR')
           }
         })
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.log('error message: ', error.message)
-        commit('THROW_ERROR', error)
+        commit('GET_SERVER_RESPONSE', error)
         commit('ADD_ERROR', error.message)
         return error.message
       } else {
         console.log('unexpected error: ', error)
         return 'An unexpected error occurred'
       }
+    } finally {
     }
   }
 }

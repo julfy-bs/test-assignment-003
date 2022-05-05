@@ -6,19 +6,12 @@
     >
       Город*
     </label>
-    <!--    <label-->
-    <!--      v-if="error.city"-->
-    <!--      for="city"-->
-    <!--      class="form__label from__label&#45;&#45;error text-red-500"-->
-    <!--    >-->
-    <!--      Обязательное поле-->
-    <!--    </label>-->
     <select
       v-model="city_id"
       required="required"
       name="city"
       class="form__input text-c-gray-900 form__input--select border-c-gray-300"
-      @change="changeOneField({key: 'email', value: city_id})"
+      @change="changeOneField({key: 'city_id', value: city_id})"
     >
       <option
         v-for="item in cities"

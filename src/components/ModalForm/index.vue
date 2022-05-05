@@ -44,6 +44,7 @@ const { postForm } = useForm()
   flex-flow: column nowrap;
   justify-content: flex-end;
   width: var(--max-width);
+  position: relative;
 }
 
 .form__label {
@@ -55,8 +56,16 @@ const { postForm } = useForm()
 }
 
 .from__label--error {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 10px;
   font-weight: 400;
   font-size: 12px;
+}
+
+.form__label .from__label--error {
+  opacity: 1;
 }
 
 .form__input {

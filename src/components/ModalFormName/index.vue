@@ -6,13 +6,6 @@
     >
       Имя*
     </label>
-    <!--    <label-->
-    <!--      v-if="error.name"-->
-    <!--      for="name"-->
-    <!--      class="form__label from__label&#45;&#45;error text-red-500"-->
-    <!--    >-->
-    <!--      Обязательное поле-->
-    <!--    </label>-->
     <input
       v-model="name"
       required="required"

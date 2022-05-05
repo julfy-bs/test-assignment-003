@@ -3,7 +3,6 @@
     class="button px-4 py-2 text-white"
     :class="classObject"
     type="button"
-    @click="buttonEvent()"
   >
     <slot />
   </button>
@@ -12,13 +11,10 @@
 <script setup lang='ts'>
 import { computed } from 'vue'
 
-type ModalType = 'form' | 'error' | ''
-
 interface Props {
   isGreen?: boolean,
   isBlue?: boolean,
   isFullWidth?: boolean,
-  buttonEvent?: (type: ModalType) => Event
 }
 
 const props = defineProps<Props>()
@@ -30,15 +26,6 @@ const classObject = computed(() => {
     'bg-c-blue': props.isBlue
   }
 })
-
-const buttonEvent = () => {
-  if (props.buttonEvent) {
-    props.buttonEvent('form')
-  } else {
-    return null
-  }
-}
-
 </script>
 
 <style scoped lang='postcss'>

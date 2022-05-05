@@ -19,15 +19,7 @@ const mutations = {
   }
 }
 
-const actions = {
-  // async toggleModal({ commit }: ActionContext<ModalState, RootState>, value?: boolean): Promise<void> {
-  //   try {
-  //     await commit('CHANGE_MODAL_DISPLAY_CONDITION', value)
-  //   } catch (e) {
-  //     throw new Error(e)
-  //   }
-  // }
-}
+const actions = {}
 
 const getters = {}
 
