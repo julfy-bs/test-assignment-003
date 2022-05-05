@@ -105,6 +105,13 @@ const { postForm } = useForm()
     width: 100%;
     grid-area: 2 / 1 / auto / span 2;
   }
+
+  .from__label--error {
+    position: static;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    height: 10px;
+  }
 }
 
 @media (min-width: 768px) {
